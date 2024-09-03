@@ -8,12 +8,12 @@ import img6 from "../../assets/images/banner/6.jpg"
 
 const Banner = () => {
     return (
-        <div className="carousel w-full h-[600px]">
+        <div className="carousel w-full h-[600px] rounded-lg">
             <div id="slide1" className="carousel-item relative w-full ">
                 <img
                     src={img1}
-                    className="w-full" />
-                <div className="absolute h-full bg-gradient-to-r flex items-center from-[#151515] to-[rgba(21,21,21,0)]">
+                    className="w-full rounded-lg" />
+                <div className="absolute h-full rounded-lg bg-gradient-to-r flex items-center from-[#151515] to-[rgba(21,21,21,0)]">
                     <div className=" space-y-7 lg:w-2/3 ml-12">
                         <h3 className="text-white md:text-6xl text-4xl font-bold">Affordable Price For Car Servicing</h3>
                         <p className="text-white text-lg">There are many variations of passages of  available, but the majority have suffered alteration in some form.</p>
@@ -30,8 +30,8 @@ const Banner = () => {
             <div id="slide2" className="carousel-item relative w-full ">
                 <img
                     src={img2}
-                    className="w-full" />
-                <div className="absolute h-full bg-gradient-to-r flex items-center from-[#151515] to-[rgba(21,21,21,0)]">
+                    className="w-full rounded-lg" />
+                <div className="absolute h-full rounded-lg bg-gradient-to-r flex items-center from-[#151515] to-[rgba(21,21,21,0)]">
                     <div className=" space-y-7 lg:w-2/3 ml-12">
                         <h3 className="text-white md:text-6xl text-4xl font-bold">Drive with Confidence</h3>
                         <p className="text-white text-lg">Top-quality tools and services to keep your car running smoothly and safely.</p>
@@ -48,8 +48,8 @@ const Banner = () => {
             <div id="slide3" className="carousel-item relative w-full ">
                 <img
                     src={img3}
-                    className="w-full" />
-                <div className="absolute h-full bg-gradient-to-r flex items-center from-[#151515] to-[rgba(21,21,21,0)]">
+                    className="w-full  rounded-lg" />
+                <div className="absolute h-full rounded-lg bg-gradient-to-r flex items-center from-[#151515] to-[rgba(21,21,21,0)]">
                     <div className=" space-y-7 lg:w-2/3 ml-12">
                         <h3 className="text-white md:text-6xl text-4xl font-bold">Performance You Can Trust</h3>
                         <p className="text-white text-lg">Upgrade your vehicle with high-performance tools and reliable services that exceed expectations.</p>
@@ -66,8 +66,8 @@ const Banner = () => {
             <div id="slide4" className="carousel-item relative w-full ">
                 <img
                     src={img4}
-                    className="w-full" />
-                <div className="absolute h-full bg-gradient-to-r flex items-center from-[#151515] to-[rgba(21,21,21,0)]">
+                    className="w-full rounded-lg" />
+                <div className="absolute h-full rounded-lg bg-gradient-to-r flex items-center from-[#151515] to-[rgba(21,21,21,0)]">
                     <div className=" space-y-7 lg:w-2/3 ml-12">
                         <h3 className="text-white md:text-6xl text-4xl font-bold">Tools for Every Job</h3>
                         <p className="text-white text-lg">From DIY repairs to professional maintenance, we offer the tools you need for any task.</p>
@@ -84,8 +84,8 @@ const Banner = () => {
             <div id="slide5" className="carousel-item relative w-full ">
                 <img
                     src={img5}
-                    className="w-full" />
-                <div className="absolute h-full bg-gradient-to-r flex items-center from-[#151515] to-[rgba(21,21,21,0)]">
+                    className="w-full rounded-lg" />
+                <div className="absolute rounded-lg h-full bg-gradient-to-r flex items-center from-[#151515] to-[rgba(21,21,21,0)]">
                     <div className=" space-y-7 lg:w-2/3 ml-12">
                         <h3 className="text-white md:text-6xl text-4xl font-bold">Revitalize Your Ride</h3>
                         <p className="text-white text-lg">Enhance your driving experience with top-notch services and the latest car tools on the market.</p>
@@ -102,8 +102,8 @@ const Banner = () => {
             <div id="slide6" className="carousel-item relative w-full ">
                 <img
                     src={img6}
-                    className="w-full" />
-                <div className="absolute h-full bg-gradient-to-r flex items-center from-[#151515] to-[rgba(21,21,21,0)]">
+                    className="w-full rounded-lg" />
+                <div className="absolute rounded-lg h-full bg-gradient-to-r flex items-center from-[#151515] to-[rgba(21,21,21,0)]">
                     <div className=" space-y-7 lg:w-2/3 ml-12">
                         <h3 className="text-white md:text-6xl text-4xl font-bold">Expert Care, Anytime</h3>
                         <p className="text-white text-lg">Count on us for 24/7 car services and a wide range of essential automotive tools.</p>

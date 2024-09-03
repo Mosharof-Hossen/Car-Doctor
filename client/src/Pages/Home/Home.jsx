@@ -1,9 +1,11 @@
+import AboutUs from "../../Components/AboutUs/AboutUs";
 import Banner from "../../Components/Banner/Banner";
 
 const Home = () => {
     return (
-        <div>
+        <div className="p-5 space-y-10">
             <Banner></Banner>
+            <AboutUs></AboutUs>
         </div>
     );
 };
