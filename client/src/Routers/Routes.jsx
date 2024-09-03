@@ -4,10 +4,10 @@ import {
 } from "react-router-dom";
 import App from "../App";
 import Home from "../Pages/Home/Home";
-import Services from "../Pages/Services/Services";
 import About from "../Pages/About/About";
 import Blogs from "../Pages/Blogs/Blogs";
 import Contact from "../Pages/Contact/Contact";
+import Services from "../Components/Services/Services";
 
 const router = createBrowserRouter([
     {
