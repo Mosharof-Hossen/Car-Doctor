@@ -28,7 +28,20 @@ const TeamMember = () => {
                 <p className="text-base md:w-2/3 mx-auto text-gray-500 ">the majority have suffered alteration in some form, by injected humour, or randomized words which do not look even slightly believable. </p>
             </div>
             <Swiper
-                slidesPerView={3}
+                breakpoints={{
+                    // When the window width is >= 640px (sm)
+                    640: {
+                        slidesPerView: 1,
+                    },
+                    // When the window width is >= 768px (md)
+                    768: {
+                        slidesPerView: 2,
+                    },
+                    // When the window width is >= 1024px (lg)
+                    1024: {
+                        slidesPerView: 3,
+                    },
+                }}
                 spaceBetween={30}
                 freeMode={true}
                 pagination={{
