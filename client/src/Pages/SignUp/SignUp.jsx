@@ -7,7 +7,7 @@ import { AuthContext } from '../../Providers/AuthProvider';
 
 
 const SignUp = () => {
-    const { createUserByEmailPassword } = useContext(AuthContext);
+    const { createUserByEmailPassword , user } = useContext(AuthContext);
     const [errMsg, setErrMsg] = useState("");
     const { register, handleSubmit, formState: { errors } } = useForm();
     const onSubmit = data => {
@@ -20,12 +20,13 @@ const SignUp = () => {
             console.log(err);
         })
     };
-    console.log(errors);
 
     const handleGoogleLogin = () => {
     }
     const handleGithubLogin = () => {
     }
+
+    console.log(user);
 
     return (
         <div className="hero  min-h-screen">

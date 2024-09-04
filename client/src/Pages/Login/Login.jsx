@@ -1,22 +1,37 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { FaGithub, FaGoogle } from 'react-icons/fa6';
 import { Link } from 'react-router-dom';
 import loginImage from "../../assets/images/login/login.svg"
+import { AuthContext } from '../../Providers/AuthProvider';
 
 
 const Login = () => {
+    const { user, signInByEmailPassword, googleLogin } = useContext(AuthContext);
     const [errMsg, setErrMsg] = useState("");
     const { register, handleSubmit, formState: { errors } } = useForm();
     const onSubmit = data => {
         console.log(data);
+        signInByEmailPassword(data.email, data.password)
+            .then(res => {
+                console.log(res.user);
+            })
+            .catch(err => {
+                console.log(err);
+            })
     };
-    console.log(errors);
     const handleGoogleLogin = () => {
+        googleLogin()
+            .then(res => {
+                console.log(res.user);
+            })
+            .catch(err => {
+                console.log(err);
+            })
     }
     const handleGithubLogin = () => {
     }
-
+console.log(user);
     return (
         <div className="hero  min-h-screen">
             <div className="hero-content flex-col lg:flex-row">
