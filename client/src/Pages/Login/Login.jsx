@@ -7,7 +7,7 @@ import { AuthContext } from '../../Providers/AuthProvider';
 
 
 const Login = () => {
-    const { user, signInByEmailPassword, googleLogin } = useContext(AuthContext);
+    const { user, signInByEmailPassword, googleLogin,githubLogin } = useContext(AuthContext);
     const [errMsg, setErrMsg] = useState("");
     const { register, handleSubmit, formState: { errors } } = useForm();
     const onSubmit = data => {
@@ -30,6 +30,13 @@ const Login = () => {
             })
     }
     const handleGithubLogin = () => {
+        githubLogin()
+        .then(res=>{
+            console.log(res);
+        })
+        .catch(err=>{
+            console.log(err);
+        })
     }
 console.log(user);
     return (
