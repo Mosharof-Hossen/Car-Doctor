@@ -10,6 +10,7 @@ import Contact from "../Pages/Contact/Contact";
 import Services from "../Components/Services/Services";
 import Login from "../Pages/Login/Login";
 import SignUp from "../Pages/SignUp/SignUp";
+import ServiceDetails from "../Pages/ServiceDetails/ServiceDetails";
 
 const router = createBrowserRouter([
     {
@@ -44,7 +45,13 @@ const router = createBrowserRouter([
             {
                 path: "/signup",
                 element: <SignUp></SignUp>
+            },
+            {
+                path: "/serviceDetails/:id",
+                loader: async({ params }) =>await fetch(`http://localhost:3000/service-details/${params.id}`),
+                element: <ServiceDetails></ServiceDetails>
             }
+
         ]
     }
 ])

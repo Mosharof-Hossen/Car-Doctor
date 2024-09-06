@@ -27,14 +27,19 @@ async function run() {
         // Connect the client to the server	(optional starting in v4.7)
         await client.connect();
 
-        const carDoctorCollection = client.db("carDoctorDB").collection("services");
+        const serviceCollection = client.db("carDoctorDB").collection("services");
 
         app.get("/services", async (req, res) => {
-            const data = carDoctorCollection.find();
+            const data = serviceCollection.find();
             const result = await data.toArray();
             res.send(result);
         })
 
+        app.get("/service-details/:id", async (req, res) => {
+            const id = req.params.id;
+            console.log(id);
+            res.send("balchal")
+        })
 
         // Send a ping to confirm a successful connection
         await client.db("admin").command({ ping: 1 });
