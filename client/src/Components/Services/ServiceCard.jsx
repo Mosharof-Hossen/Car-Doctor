@@ -3,7 +3,6 @@ import { FaArrowRight } from "react-icons/fa6";
 import { Link, } from "react-router-dom";
 const ServiceCard = ({ service }) => {
     const { _id, title, price, img } = service
-    console.log(service);
     return (
         <div className="card border rounded ">
             <figure className="px-5 pt-5">
