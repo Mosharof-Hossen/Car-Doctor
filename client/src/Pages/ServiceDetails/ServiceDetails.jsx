@@ -1,9 +1,10 @@
 import { useLoaderData, useLocation } from "react-router-dom";
 import checkoutBanner from "../../assets/images/checkout/checkout.png"
+import { FaArrowRight } from "react-icons/fa6";
 
 const ServiceDetails = () => {
     const loaderData = useLoaderData()
-    const { img, title, facility } = useLoaderData()
+    const { img, title, facility, description } = useLoaderData()
     const location = useLocation()
     console.log(location);
     console.log(loaderData);
@@ -39,16 +40,47 @@ const ServiceDetails = () => {
                         <div className="grid md:grid-cols-2 grid-cols-1 gap-5">
                             {
                                 facility?.map((item, i) => <div key={i}
-                                className="space-y-2 p-5 border-t-4 rounded-xl bg-slate-100 border-primary-c"
+                                    className="space-y-2 p-5 border-t-4 rounded-xl bg-slate-100 border-primary-c"
                                 >
                                     <p className="text-xl font-bold">{item.name}</p>
                                     <p className="text-gray-500 text-justify text-base">{item.details}</p>
                                 </div>)
                             }
                         </div>
+                        <p className="text-gray-500 text-justify text-base">{description}</p>
+                    </div>
+                    <div className="space-y-4 my-8">
+                        <h3 className="text-4xl font-bold">{title}</h3>
+                        <p className="text-base text-gray-500 text-justify">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomized words which do not look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. </p>
+                        <div className="grid md:grid-cols-3 gap-5">
+                            <div className="space-y-4 text-center border rounded p-10">
+                                <h1 className="inline p-3 rounded-full bg-primary-c text-white font-bold text-xl border-orange-400 border-4">01</h1>
+                                <p className="font-bold">Step One</p>
+                                <p className="text-gray-500">It uses a dictionary of over 200 .</p>
+                            </div>
+                            <div className="space-y-4 text-center border rounded p-10">
+                                <h1 className="inline p-3 rounded-full bg-primary-c text-white font-bold text-xl border-orange-400 border-4">02</h1>
+                                <p className="font-bold">Step Two</p>
+                                <p className="text-gray-500">It uses a dictionary of over 200 .</p>
+                            </div>
+                            <div className="space-y-4 text-center border rounded p-10">
+                                <h1 className="inline p-3 rounded-full bg-primary-c text-white font-bold text-xl border-orange-400 border-4">03</h1>
+                                <p className="font-bold">Step Three</p>
+                                <p className="text-gray-500">It uses a dictionary of over 200 .</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div className="lg:col-span-1">cheackout</div>
+                <div className="lg:col-span-1 py-5">
+                    <div className="bg-slate-100 p-5 rounded space-y-5">
+                        <h4 className="text-2xl font-bold">Services</h4>
+                        <p className="hover:bg-primary-c hover:text-white bg-white p-4 rounded font-semibold flex justify-between items-center"><span>Full Car Repair</span> <FaArrowRight /></p>
+                        <p className="hover:bg-primary-c hover:text-white bg-white p-4 rounded font-semibold flex justify-between items-center"><span>Engine Repair</span> <FaArrowRight /></p>
+                        <p className="hover:bg-primary-c hover:text-white bg-white p-4 rounded font-semibold flex justify-between items-center"><span>Automatic Services</span> <FaArrowRight /></p>
+                        <p className="hover:bg-primary-c hover:text-white bg-white p-4 rounded font-semibold flex justify-between items-center"><span>Engine Oil Change</span> <FaArrowRight /></p>
+                        <p className="hover:bg-primary-c hover:text-white bg-white p-4 rounded font-semibold flex justify-between items-center"><span>Battery Charge</span> <FaArrowRight /></p>
+                    </div>
+                </div>
             </div>
         </div>
     );
