@@ -1,6 +1,6 @@
 import { useLoaderData, useLocation } from "react-router-dom";
 import checkoutBanner from "../../assets/images/checkout/checkout.png"
-import { FaArrowRight } from "react-icons/fa6";
+import { FaArrowRight, FaFileLines } from "react-icons/fa6";
 
 const ServiceDetails = () => {
     const loaderData = useLoaderData()
@@ -71,7 +71,7 @@ const ServiceDetails = () => {
                         </div>
                     </div>
                 </div>
-                <div className="lg:col-span-1 py-5">
+                <div className="lg:col-span-1 py-5 space-y-10">
                     <div className="bg-slate-100 p-5 rounded space-y-5">
                         <h4 className="text-2xl font-bold">Services</h4>
                         <p className="hover:bg-primary-c hover:text-white bg-white p-4 rounded font-semibold flex justify-between items-center"><span>Full Car Repair</span> <FaArrowRight /></p>
@@ -79,6 +79,30 @@ const ServiceDetails = () => {
                         <p className="hover:bg-primary-c hover:text-white bg-white p-4 rounded font-semibold flex justify-between items-center"><span>Automatic Services</span> <FaArrowRight /></p>
                         <p className="hover:bg-primary-c hover:text-white bg-white p-4 rounded font-semibold flex justify-between items-center"><span>Engine Oil Change</span> <FaArrowRight /></p>
                         <p className="hover:bg-primary-c hover:text-white bg-white p-4 rounded font-semibold flex justify-between items-center"><span>Battery Charge</span> <FaArrowRight /></p>
+                    </div>
+
+                    <div className="bg-[#151515] text-white p-5 rounded space-y-5 ">
+                        <h4 className="text-2xl font-bold">Download</h4>
+                        <div className="flex justify-between items-center">
+                            <div className="flex items-center space-x-2">
+                                <FaFileLines className="text-3xl"/>
+                                <div>
+                                    <p className="">Our Brochure</p>
+                                    <p className="text-sm text-gray-400">Download</p>
+                                </div>
+                            </div>
+                            <button className="bg-primary-c rounded p-3"><FaArrowRight></FaArrowRight></button>
+                        </div>
+                        <div className="flex justify-between items-center">
+                            <div className="flex items-center space-x-2">
+                                <FaFileLines className="text-3xl"/>
+                                <div>
+                                    <p className="">Company Details</p>
+                                    <p className="text-sm text-gray-400">Download</p>
+                                </div>
+                            </div>
+                            <button className="bg-primary-c rounded p-3"><FaArrowRight></FaArrowRight></button>
+                        </div>
                     </div>
                 </div>
             </div>
