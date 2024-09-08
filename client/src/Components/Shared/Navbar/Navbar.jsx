@@ -3,9 +3,13 @@ import "./navbar.css"
 import logo from "../../../assets/logo.svg"
 import { FaBagShopping } from "react-icons/fa6";
 import { FaSearch } from "react-icons/fa";
+import { useContext } from "react";
+import { AuthContext } from "../../../Providers/AuthProvider";
+import userImage from "../../../assets/icons/user.png"
 
 const Navbar = () => {
-
+    const { user, logOut } = useContext(AuthContext);
+    console.log(user);
     const links = <>
 
         <NavLink to={"/"} className={"  px-2 ml-1 py-2 rounded font-semibold "}><li>Home</li></NavLink>
@@ -16,6 +20,7 @@ const Navbar = () => {
 
 
     </>
+
 
     return (
         <div className="navbar bg-base-100">
@@ -55,8 +60,19 @@ const Navbar = () => {
             </div>
             <div className="navbar-end space-x-4">
                 <button className="text-2xl text-black"><FaBagShopping /></button>
-                <button className="text-2xl text-black"><FaSearch></FaSearch></button>
-                <button className="text-primary-c border-primary-c border px-3 py-2 rounded">Appointment</button>
+                <div className="avatar">
+                    <div className="w-10 rounded-full">
+                        <img src={user ? user.photoURL : userImage} />
+                    </div>
+                </div>
+                {
+                    user ?
+                        <button onClick={() => logOut()} className="text-primary-c border-primary-c border px-3 py-2 rounded">Sign Out</button>
+
+                        :
+                        <Link to={'/login'}><button className="text-primary-c border-primary-c border px-3 py-2 rounded">Sign in</button></Link>
+
+                }
             </div>
         </div>
     );
