@@ -8,7 +8,7 @@ import userImage from "../../../assets/icons/user.png"
 
 const Navbar = () => {
     const { user, logOut } = useContext(AuthContext);
-    console.log(user);
+
     const links = <>
 
         <NavLink to={"/"} className={"  px-2 ml-1 py-2 rounded font-semibold "}><li>Home</li></NavLink>
@@ -61,7 +61,7 @@ const Navbar = () => {
                 <button className="text-2xl text-black"><FaBagShopping /></button>
                 <div className="avatar">
                     <div className="w-10 rounded-full">
-                        <img src={user ? user.photoURL : userImage} />
+                        <img src={user?.photoURL ? user.photoURL : userImage} />
                     </div>
                 </div>
                 {

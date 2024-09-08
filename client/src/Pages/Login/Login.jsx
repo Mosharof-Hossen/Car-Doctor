@@ -1,29 +1,48 @@
 import { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { FaGithub, FaGoogle } from 'react-icons/fa6';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import loginImage from "../../assets/images/login/login.svg"
 import { AuthContext } from '../../Providers/AuthProvider';
+import Swal from 'sweetalert2'
 
 
 const Login = () => {
-    const { user, signInByEmailPassword, googleLogin,githubLogin } = useContext(AuthContext);
+    const { user, signInByEmailPassword, googleLogin, githubLogin } = useContext(AuthContext);
     const [errMsg, setErrMsg] = useState("");
+    const location = useLocation()
+    const navigate = useNavigate()
+    console.log(location);
     const { register, handleSubmit, formState: { errors } } = useForm();
     const onSubmit = data => {
-        console.log(data);
         signInByEmailPassword(data.email, data.password)
-            .then(res => {
-                console.log(res.user);
+            .then(() => {
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "Login Successfully",
+                    showConfirmButton: false,
+                    timer: 1500
+                }).then(() => {
+                    navigate(location?.state ? location?.state : "/")
+                })
             })
-            .catch(err => {
-                console.log(err);
+            .catch(() => {
+                setErrMsg("Invalid Email or Password.")
             })
     };
     const handleGoogleLogin = () => {
         googleLogin()
-            .then(res => {
-                console.log(res.user);
+            .then(() => {
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "Login Successfully",
+                    showConfirmButton: false,
+                    timer: 1500
+                }).then(() => {
+                    navigate(location?.state ? location?.state : "/")
+                })
             })
             .catch(err => {
                 console.log(err);
@@ -31,14 +50,22 @@ const Login = () => {
     }
     const handleGithubLogin = () => {
         githubLogin()
-        .then(res=>{
-            console.log(res);
-        })
-        .catch(err=>{
-            console.log(err);
-        })
+            .then(() => {
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "Login Successfully",
+                    showConfirmButton: false,
+                    timer: 1500
+                }).then(() => {
+                    navigate(location?.state ? location?.state : "/")
+                })
+            })
+            .catch(err => {
+                console.log(err);
+            })
     }
-console.log(user);
+    console.log(user);
     return (
         <div className="hero  min-h-screen">
             <div className="hero-content flex-col lg:flex-row">

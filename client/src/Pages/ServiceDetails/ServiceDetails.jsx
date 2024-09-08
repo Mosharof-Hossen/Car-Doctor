@@ -1,15 +1,12 @@
-import { Link, useLoaderData, useNavigate, } from "react-router-dom";
+import { Link, useLoaderData, } from "react-router-dom";
 import checkoutBanner from "../../assets/images/checkout/checkout.png"
 import { FaArrowRight, FaFileLines } from "react-icons/fa6";
 import logo from "../../assets/logo.svg"
 
 const ServiceDetails = () => {
-    const navigate = useNavigate()
     const loaderData = useLoaderData()
-    const { img, title, facility, description, price } = loaderData
-    const handleCheckout = () => {
-        navigate('/checkout',{state:{loaderData}})
-    }
+    const {_id, img, title, facility, description, price } = loaderData
+    console.log(loaderData);
     return (
         <div className="p-5">
 
@@ -118,7 +115,7 @@ const ServiceDetails = () => {
 
                     <div className="">
                         <h3 className="text-3xl mb-5">Price ${price}</h3>
-                        <button onClick={handleCheckout} className="w-full px-3 py-2 bg-primary-c text-white rounded">Proceed Checkout</button>
+                        <Link to={`/checkout/${_id}`}><button className="w-full px-3 py-2 bg-primary-c text-white rounded">Proceed Checkout</button></Link>
                     </div>
 
 

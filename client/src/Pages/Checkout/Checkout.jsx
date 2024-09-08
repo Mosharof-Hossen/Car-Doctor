@@ -1,10 +1,10 @@
-import { useLocation } from "react-router-dom";
+import { useLoaderData,  } from "react-router-dom";
 
 
 const Checkout = () => {
 
-    const location = useLocation()
-    console.log(location);
+    const loaderData = useLoaderData()
+    console.log(loaderData);
     return (
         <div>
             Checkout

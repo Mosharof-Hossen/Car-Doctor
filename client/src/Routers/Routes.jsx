@@ -54,7 +54,8 @@ const router = createBrowserRouter([
                 element: <ServiceDetails></ServiceDetails>
             },
             {
-                path: "/Checkout",
+                path: "/checkout/:id",
+                loader: async ({ params }) => await fetch(`http://localhost:3000/service-details/${params.id}`),
                 element: <PrivateRoute><Checkout></Checkout></PrivateRoute>
             }
 
