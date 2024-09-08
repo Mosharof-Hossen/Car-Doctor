@@ -1,10 +1,11 @@
-import { useLoaderData, useLocation } from "react-router-dom";
+import { Link, useLoaderData, useLocation } from "react-router-dom";
 import checkoutBanner from "../../assets/images/checkout/checkout.png"
 import { FaArrowRight, FaFileLines } from "react-icons/fa6";
+import logo from "../../assets/logo.svg"
 
 const ServiceDetails = () => {
     const loaderData = useLoaderData()
-    const { img, title, facility, description } = useLoaderData()
+    const { img, title, facility, description, price } = useLoaderData()
     const location = useLocation()
     console.log(location);
     console.log(loaderData);
@@ -36,7 +37,7 @@ const ServiceDetails = () => {
                     <img src={img} alt="" className="h-[400px] w-full rounded-lg" />
                     <div className="space-y-4 my-8">
                         <h3 className="text-4xl font-bold">{title}</h3>
-                        <p className="text-base text-gray-500 text-justify">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomized words which do not look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. </p>
+                        <p className="text-base text-gray-500 text-justify">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomized words which do not look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there is not anything embarrassing hidden in the middle of text. </p>
                         <div className="grid md:grid-cols-2 grid-cols-1 gap-5">
                             {
                                 facility?.map((item, i) => <div key={i}
@@ -51,7 +52,7 @@ const ServiceDetails = () => {
                     </div>
                     <div className="space-y-4 my-8">
                         <h3 className="text-4xl font-bold">{title}</h3>
-                        <p className="text-base text-gray-500 text-justify">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomized words which do not look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. </p>
+                        <p className="text-base text-gray-500 text-justify">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomized words which do not look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there is not anything embarrassing hidden in the middle of text. </p>
                         <div className="grid md:grid-cols-3 gap-5">
                             <div className="space-y-4 text-center border rounded p-10">
                                 <h1 className="inline p-3 rounded-full bg-primary-c text-white font-bold text-xl border-orange-400 border-4">01</h1>
@@ -85,7 +86,7 @@ const ServiceDetails = () => {
                         <h4 className="text-2xl font-bold">Download</h4>
                         <div className="flex justify-between items-center">
                             <div className="flex items-center space-x-2">
-                                <FaFileLines className="text-3xl"/>
+                                <FaFileLines className="text-3xl" />
                                 <div>
                                     <p className="">Our Brochure</p>
                                     <p className="text-sm text-gray-400">Download</p>
@@ -95,7 +96,7 @@ const ServiceDetails = () => {
                         </div>
                         <div className="flex justify-between items-center">
                             <div className="flex items-center space-x-2">
-                                <FaFileLines className="text-3xl"/>
+                                <FaFileLines className="text-3xl" />
                                 <div>
                                     <p className="">Company Details</p>
                                     <p className="text-sm text-gray-400">Download</p>
@@ -104,6 +105,22 @@ const ServiceDetails = () => {
                             <button className="bg-primary-c rounded p-3"><FaArrowRight></FaArrowRight></button>
                         </div>
                     </div>
+
+                    <div className="text-center bg-[#151515] text-white px-5 py-10 rounded space-y-5 ">
+                        <img src={logo} alt="" className="mx-auto" />
+                        <p>Need Help? We Are Here To Help You.</p>
+                        <div className="bg-white text-black py-8 rounded relative">
+                            <p><span className="text-primary-c font-bold">Car Doctor </span><span className="font-bold">Special</span> <br /> <span className="text-sm text-gray-500">Save up to</span> <span className="text-primary-c">60% off</span></p>
+                            <button className="bg-primary-c text-white px-3 py-2 rounded absolute bottom-0 -translate-x-1/2 translate-y-1/2 left-1/2">Get A Quote</button>
+                        </div>
+                    </div>
+
+                    <div className="  px-5  space-y-5 ">
+                        <h3 className="text-3xl">Price ${price}</h3>
+                        <Link to={"/"}> <button className="w-full px-3 py-2 bg-primary-c text-white rounded">Proceed Checkout</button></Link>
+                    </div>
+
+
                 </div>
             </div>
         </div>
