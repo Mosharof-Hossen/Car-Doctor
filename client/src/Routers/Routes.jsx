@@ -12,6 +12,7 @@ import Login from "../Pages/Login/Login";
 import SignUp from "../Pages/SignUp/SignUp";
 import ServiceDetails from "../Pages/ServiceDetails/ServiceDetails";
 import Checkout from "../Pages/Checkout/Checkout";
+import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
     {
@@ -49,12 +50,12 @@ const router = createBrowserRouter([
             },
             {
                 path: "/serviceDetails/:id",
-                loader: async({ params }) =>await fetch(`http://localhost:3000/service-details/${params.id}`),
+                loader: async ({ params }) => await fetch(`http://localhost:3000/service-details/${params.id}`),
                 element: <ServiceDetails></ServiceDetails>
             },
             {
-                path:"/Checkout",
-                element:<Checkout></Checkout>
+                path: "/Checkout",
+                element: <PrivateRoute><Checkout></Checkout></PrivateRoute>
             }
 
         ]

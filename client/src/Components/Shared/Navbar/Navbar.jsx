@@ -2,7 +2,6 @@ import { Link, NavLink } from "react-router-dom";
 import "./navbar.css"
 import logo from "../../../assets/logo.svg"
 import { FaBagShopping } from "react-icons/fa6";
-import { FaSearch } from "react-icons/fa";
 import { useContext } from "react";
 import { AuthContext } from "../../../Providers/AuthProvider";
 import userImage from "../../../assets/icons/user.png"
