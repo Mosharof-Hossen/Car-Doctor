@@ -58,7 +58,7 @@ const Navbar = () => {
                 </ul>
             </div>
             <div className="navbar-end space-x-4">
-                <button className="text-2xl text-black"><FaBagShopping /></button>
+                <NavLink to={"/order"}><button className="text-2xl "><FaBagShopping /></button></NavLink>
                 <div className="avatar">
                     <div className="w-10 rounded-full">
                         <img src={user?.photoURL ? user.photoURL : userImage} />

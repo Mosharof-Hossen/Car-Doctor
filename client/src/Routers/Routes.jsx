@@ -13,6 +13,7 @@ import SignUp from "../Pages/SignUp/SignUp";
 import ServiceDetails from "../Pages/ServiceDetails/ServiceDetails";
 import Checkout from "../Pages/Checkout/Checkout";
 import PrivateRoute from "./PrivateRoute";
+import Order from "../Pages/Order/Order";
 
 const router = createBrowserRouter([
     {
@@ -57,6 +58,10 @@ const router = createBrowserRouter([
                 path: "/checkout/:id",
                 loader: async ({ params }) => await fetch(`http://localhost:3000/service-details/${params.id}`),
                 element: <PrivateRoute><Checkout></Checkout></PrivateRoute>
+            },
+            {
+                path: "/order",
+                element: <Order></Order>
             }
 
         ]

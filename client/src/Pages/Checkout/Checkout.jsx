@@ -1,13 +1,14 @@
-import { useLoaderData, } from "react-router-dom";
+import { useLoaderData, useNavigate, } from "react-router-dom";
 
 import checkoutBanner from "../../assets/images/checkout/checkout.png"
 import { useForm } from "react-hook-form";
 import { useContext } from "react";
 import { AuthContext } from "../../Providers/AuthProvider";
+import Swal from "sweetalert2";
 const Checkout = () => {
     const { user } = useContext(AuthContext);
     const { _id, img, price, title, } = useLoaderData()
-    console.log(useLoaderData());
+    const navigate = useNavigate()
     const { register, handleSubmit, formState: { errors } } = useForm();
     const onSubmit = shippingAddress => {
         const orderInfo = {
@@ -31,7 +32,17 @@ const Checkout = () => {
         })
             .then(res => res.json())
             .then(result => {
-                console.log(result);
+                if (result.acknowledged) {
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: "Order Confirmed",
+                        showConfirmButton: false,
+                        timer: 1500
+                    }).then(() => {
+                        navigate("/order")
+                    })
+                }
             })
         console.log(orderInfo);
     }
