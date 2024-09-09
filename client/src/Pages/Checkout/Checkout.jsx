@@ -6,7 +6,7 @@ import { useContext } from "react";
 import { AuthContext } from "../../Providers/AuthProvider";
 const Checkout = () => {
     const { user } = useContext(AuthContext);
-    const { _id,img,price,title, } = useLoaderData()
+    const { _id, img, price, title, } = useLoaderData()
     console.log(useLoaderData());
     const { register, handleSubmit, formState: { errors } } = useForm();
     const onSubmit = shippingAddress => {
@@ -16,9 +16,23 @@ const Checkout = () => {
             img,
             price,
             title,
-            orderDate :new Date(),
-            shippingAddress
+            orderDate: new Date(),
+            shippingAddress,
+            status: "pending"
         }
+
+        fetch("http://localhost:3000/bookings", {
+            method: "POST",
+            headers: {
+                'content-type': 'application/json'
+            }
+            ,
+            body: JSON.stringify(orderInfo)
+        })
+            .then(res => res.json())
+            .then(result => {
+                console.log(result);
+            })
         console.log(orderInfo);
     }
 
