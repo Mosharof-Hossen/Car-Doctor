@@ -13,7 +13,6 @@ const Order = () => {
     }, [user.uid])
 
     const handleDelete = (id) => {
-
         Swal.fire({
             title: "Are you sure?",
             text: "You won't be able to revert this!",
@@ -24,7 +23,6 @@ const Order = () => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-
                 fetch(`http://localhost:3000/bookings/${id}`, {
                     method: "DELETE"
                 })
@@ -33,15 +31,13 @@ const Order = () => {
                         if (result.deletedCount > 0) {
                             Swal.fire({
                                 title: "Deleted!",
-                                text: "Your file has been deleted.",
+                                text: "Your item has been deleted.",
                                 icon: "success"
                             })
                             const remaining = bookings.filter(item => item._id != id);
                             setBookings(remaining)
                         }
                     })
-
-
             }
         });
 

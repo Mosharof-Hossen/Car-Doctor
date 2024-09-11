@@ -1,9 +1,60 @@
 import { useLoaderData } from "react-router-dom";
 import inventoryBanner from "../../assets/images/checkout/checkout.png"
 import ManageTableRow from "./ManageTableRow";
+import Swal from "sweetalert2";
+import { useState } from "react";
 
 const ManageInventory = () => {
-    const bookings = useLoaderData()
+    const loaderData = useLoaderData()
+    const [bookings, setBookings] = useState(loaderData);
+    console.log(bookings);
+    const handleStatusChange = (event, id) => {
+        const selectedStatus = event.target.value;
+        console.log(selectedStatus, id);
+        const data = { id, selectedStatus }
+        fetch(`http://localhost:3000/bookings/${id}`, {
+            method: "PATCH",
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+            .then(res => res.json())
+            .then(result => {
+                console.log(result);
+            })
+    }
+    const handleDelete = (id) => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                fetch(`http://localhost:3000/bookings/${id}`, {
+                    method: "DELETE"
+                })
+                    .then(res => res.json())
+                    .then(result => {
+                        if (result.deletedCount > 0) {
+                            Swal.fire({
+                                title: "Deleted!",
+                                text: "Your item has been deleted.",
+                                icon: "success"
+                            })
+                            const remaining = bookings.filter(item => item._id != id);
+                            setBookings(remaining)
+                        }
+                    })
+            }
+        });
+
+
+    }
     return (
         <div className="p-5">
             <div
@@ -43,7 +94,7 @@ const ManageInventory = () => {
                     <tbody>
                         {/* row 1 */}
                         {
-                            bookings?.map(item => <ManageTableRow item={item} key={item._id} ></ManageTableRow>)
+                            bookings?.map(item => <ManageTableRow item={item} key={item._id} handleDelete={handleDelete} handleStateChange={handleStatusChange} ></ManageTableRow>)
                         }
 
                     </tbody>
