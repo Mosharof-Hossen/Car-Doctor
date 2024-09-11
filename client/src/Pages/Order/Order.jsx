@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import orderBanner from "../../assets/images/checkout/checkout.png"
 import { AuthContext } from "../../Providers/AuthProvider";
 import TableRow from "./TableRow";
+import Swal from "sweetalert2";
 const Order = () => {
     const { user } = useContext(AuthContext)
     const [bookings, setBookings] = useState([]);
@@ -12,13 +13,39 @@ const Order = () => {
     }, [user.uid])
 
     const handleDelete = (id) => {
-        fetch(`http://localhost:3000/bookings/${id}`, {
-            method: "DELETE"
-        })
-            .then(res => res.json())
-            .then(result => {
-                console.log(result);
-            })
+
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+
+                fetch(`http://localhost:3000/bookings/${id}`, {
+                    method: "DELETE"
+                })
+                    .then(res => res.json())
+                    .then(result => {
+                        if (result.deletedCount > 0) {
+                            Swal.fire({
+                                title: "Deleted!",
+                                text: "Your file has been deleted.",
+                                icon: "success"
+                            })
+                            const remaining = bookings.filter(item => item._id != id);
+                            setBookings(remaining)
+                        }
+                    })
+
+
+            }
+        });
+
+
     }
     return (
         <div className="p-5">
