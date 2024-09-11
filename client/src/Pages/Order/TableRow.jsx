@@ -2,13 +2,13 @@ import PropTypes from 'prop-types';
 import { ImCross } from "react-icons/im";
 import { Link } from 'react-router-dom';
 
-const TableRow = ({ item }) => {
-    const { productId, img, price,orderDate ,status,title } = item;
+const TableRow = ({ item, handleDelete }) => {
+    const { _id, productId, img, price, orderDate, status, title } = item;
     console.log(item);
     return (
         <tr>
             <th>
-                <button className='text-4xl'>  <ImCross className='border p-2 text-white bg-black rounded-full'/></button>
+                <button onClick={() => handleDelete(_id)} className='text-4xl'>  <ImCross className='border p-2 text-white bg-black rounded-full' /></button>
             </th>
             <td>
                 <div className="flex items-center gap-3">
@@ -37,7 +37,8 @@ const TableRow = ({ item }) => {
 };
 
 TableRow.propTypes = {
-    item: PropTypes.object.isRequired
+    item: PropTypes.object.isRequired,
+    handleDelete: PropTypes.func
 };
 
 export default TableRow;

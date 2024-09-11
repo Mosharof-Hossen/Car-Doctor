@@ -10,6 +10,16 @@ const Order = () => {
             .then(res => res.json())
             .then(data => setBookings(data))
     }, [user.uid])
+
+    const handleDelete = (id) => {
+        fetch(`http://localhost:3000/bookings/${id}`, {
+            method: "DELETE"
+        })
+            .then(res => res.json())
+            .then(result => {
+                console.log(result);
+            })
+    }
     return (
         <div className="p-5">
             <div
@@ -32,7 +42,7 @@ const Order = () => {
                 </div>
             </div>
             {/* Table */}
-            <div className="overflow-x-auto">
+            <div className="overflow-x-auto mt-16">
                 <table className="table">
                     {/* head */}
                     <thead>
@@ -49,7 +59,7 @@ const Order = () => {
                     <tbody>
                         {/* row 1 */}
                         {
-                            bookings?.map(item => <TableRow item={item} key={item._id}></TableRow>)
+                            bookings?.map(item => <TableRow item={item} key={item._id} handleDelete={handleDelete}></TableRow>)
                         }
 
                     </tbody>

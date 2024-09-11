@@ -46,9 +46,16 @@ async function run() {
         app.get("/bookings/:userID", async (req, res) => {
             const id = req.params.userID;
             console.log(id);
-            const query = { userId : (id) };
+            const query = { userId: (id) };
             const result = await bookingsCollection.find(query).toArray();
             res.send(result);
+        })
+
+        app.delete("/bookings/:id", async (req, res) => {
+            const id = req.params.id;
+            const query = { _id: new ObjectId(id) };
+            const result = await bookingsCollection.deleteOne(query);
+            res.send(result)
         })
 
         app.post("/bookings", async (req, res) => {
