@@ -45,9 +45,13 @@ async function run() {
 
         app.get("/bookings/:userID", async (req, res) => {
             const id = req.params.userID;
-            console.log(id);
             const query = { userId: (id) };
             const result = await bookingsCollection.find(query).toArray();
+            res.send(result);
+        })
+        app.get("/bookings", async (req, res) => {
+            const id = req.params.userID;
+            const result = await bookingsCollection.find().toArray();
             res.send(result);
         })
 

@@ -18,6 +18,9 @@ const Navbar = () => {
         <NavLink to={"/contact"} className={"  px-2 ml-1 py-2 rounded font-semibold "}><li>Contact</li></NavLink>
 
 
+        <NavLink to={"/manage-inventory"} className={"  px-2 ml-1 py-2 rounded font-semibold "}><li>Manage Inventory</li></NavLink>
+
+
     </>
 
 
