@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import orderBanner from "../../assets/images/checkout/checkout.png"
 import { AuthContext } from "../../Providers/AuthProvider";
+import TableRow from "./TableRow";
 const Order = () => {
     const { user } = useContext(AuthContext)
     const [bookings, setBookings] = useState([]);
@@ -9,7 +10,6 @@ const Order = () => {
             .then(res => res.json())
             .then(data => setBookings(data))
     }, [user.uid])
-    console.log(bookings);
     return (
         <div className="p-5">
             <div
@@ -31,8 +31,31 @@ const Order = () => {
                     </div>
                 </div>
             </div>
+            {/* Table */}
+            <div className="overflow-x-auto">
+                <table className="table">
+                    {/* head */}
+                    <thead>
+                        <tr>
+                            <th>
+                                Delete ?
+                            </th>
+                            <th>Product Name</th>
+                            <th>Price</th>
+                            <th>Date</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {/* row 1 */}
+                        {
+                            bookings?.map(item => <TableRow item={item} key={item._id}></TableRow>)
+                        }
 
+                    </tbody>
 
+                </table>
+            </div>
         </div>
     );
 };
