@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const TableRow = ({ item, handleDelete }) => {
     const { _id, productId, img, price, orderDate, status, title } = item;
-    console.log(item);
+    console.log(status);
     return (
         <tr>
             <th>
@@ -30,7 +30,18 @@ const TableRow = ({ item, handleDelete }) => {
             </td>
             <td>{orderDate.split('T')[0]}</td>
             <th>
-                <button className="px-3 py-2 bg-primary-c rounded text-white">{status}</button>
+                {
+                    (status == "Pending") && <button className="px-3 py-2 bg-blue-500 rounded text-white">{status}</button>
+                }
+                {
+                    (status == "Confirmed") && <button className="px-3 py-2 bg-green-500 rounded text-white">{status}</button>
+                }
+                {
+                    (status == "Ongoing") && <button className="px-3 py-2 bg-orange-400 rounded text-white">{status}</button>
+                }
+                {
+                    (status == "Cancel") && <button className="px-3 py-2 bg-primary-c rounded text-white">{status}</button>
+                }
             </th>
         </tr>
     );

@@ -7,10 +7,10 @@ import { useState } from "react";
 const ManageInventory = () => {
     const loaderData = useLoaderData()
     const [bookings, setBookings] = useState(loaderData);
-    console.log(bookings);
+
     const handleStatusChange = (event, id) => {
         const selectedStatus = event.target.value;
-        console.log(selectedStatus, id);
+
         const data = { id, selectedStatus }
         fetch(`http://localhost:3000/bookings/${id}`, {
             method: "PATCH",
@@ -21,7 +21,16 @@ const ManageInventory = () => {
         })
             .then(res => res.json())
             .then(result => {
-                console.log(result);
+                if (result.modifiedCount > 0) {
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: "Status has been updated",
+                        showConfirmButton: false,
+                        timer: 1000
+                    });
+
+                }
             })
     }
     const handleDelete = (id) => {

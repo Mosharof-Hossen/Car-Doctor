@@ -19,7 +19,7 @@ const Checkout = () => {
             title,
             orderDate: new Date(),
             shippingAddress,
-            status: "pending"
+            status: "Pending"
         }
 
         fetch("http://localhost:3000/bookings", {
