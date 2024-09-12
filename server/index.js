@@ -1,12 +1,20 @@
 const express = require('express');
 const cors = require('cors');
 const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
+const jwt = require("jsonwebtoken");
+const cookieParser = require('cookie-parser')
+
 require("dotenv").config();
 
 app = express()
 const port = process.env.PORT || 3000;
 
-app.use(cors());
+app.use(cors({
+    origin: ['http://localhost:5173'],
+    credentials: true
+}));
+app.use(cookieParser())
+
 app.use(express.json());
 
 
@@ -30,6 +38,23 @@ async function run() {
         const serviceCollection = client.db("carDoctorDB").collection("services");
         const bookingsCollection = client.db("carDoctorDB").collection("bookings");
 
+        // Auth JWT
+        app.post('/jwt', async (req, res) => {
+            const user = req.body;
+            console.log(user);
+
+            const token = jwt.sign(user, process.env.JWT_TOKEN, {
+                expiresIn: '1h'
+            })
+            console.log(token);
+            res.cookie('token', token, {
+                httpOnly: true,
+                secure: false,
+            })
+            res.send({ success: true })
+        })
+
+
         app.get("/services", async (req, res) => {
             const data = serviceCollection.find();
             const result = await data.toArray();
@@ -45,6 +70,7 @@ async function run() {
 
         app.get("/bookings/:userID", async (req, res) => {
             const id = req.params.userID;
+            console.log("token", req.cookies);
             const query = { userId: (id) };
             const result = await bookingsCollection.find(query).toArray();
             res.send(result);

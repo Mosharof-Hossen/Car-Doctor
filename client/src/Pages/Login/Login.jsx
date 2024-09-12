@@ -5,7 +5,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import loginImage from "../../assets/images/login/login.svg"
 import { AuthContext } from '../../Providers/AuthProvider';
 import Swal from 'sweetalert2'
-
+import axios from 'axios';
 
 const Login = () => {
     const { user, signInByEmailPassword, googleLogin, githubLogin } = useContext(AuthContext);
@@ -16,7 +16,7 @@ const Login = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const onSubmit = data => {
         signInByEmailPassword(data.email, data.password)
-            .then(() => {
+            .then((res) => {
                 Swal.fire({
                     position: "top-end",
                     icon: "success",
@@ -24,7 +24,12 @@ const Login = () => {
                     showConfirmButton: false,
                     timer: 1500
                 }).then(() => {
-                    navigate(location?.state ? location?.state : "/")
+                    const user = { email: res.user.email };
+                    axios.post(`http://localhost:3000/jwt`, user, { withCredentials: true })
+                        .then(resJwt => {
+                            console.log(resJwt);
+                        })
+                    // navigate(location?.state ? location?.state : "/")
                 })
             })
             .catch(() => {
