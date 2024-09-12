@@ -14,18 +14,19 @@ const Login = () => {
     const navigate = useNavigate()
     console.log(location);
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const onSubmit = data => {
+    const onSubmit = (data) => {
         signInByEmailPassword(data.email, data.password)
             .then((res) => {
+                console.log(res);
                 Swal.fire({
                     position: "top-end",
                     icon: "success",
                     title: "Login Successfully",
                     showConfirmButton: false,
                     timer: 1500
-                }).then(() => {
-                    const user = { email: res.user.email };
-                    axios.post(`http://localhost:3000/jwt`, user, { withCredentials: true })
+                }).then(async () => {
+                    const user = { email: res.user.email, userId: res.user.uid };
+                    await axios.post(`http://localhost:3000/jwt`, user, { withCredentials: true })
                         .then(resJwt => {
                             console.log(resJwt);
                         })
@@ -66,8 +67,8 @@ const Login = () => {
                     navigate(location?.state ? location?.state : "/")
                 })
             })
-            .catch(err => {
-                console.log(err);
+            .catch(() => {
+                // console.log(err);
             })
     }
     console.log(user);

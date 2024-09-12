@@ -9,6 +9,7 @@ require("dotenv").config();
 app = express()
 const port = process.env.PORT || 3000;
 
+// Middleware
 app.use(cors({
     origin: ['http://localhost:5173'],
     credentials: true
@@ -16,6 +17,23 @@ app.use(cors({
 app.use(cookieParser())
 
 app.use(express.json());
+
+const verifyToken = (req, res, next) => {
+    const token = req.cookies.token;
+    if (!token) {
+        return res.status(403).json({ message: 'Access denied. Token is missing.' })
+    }
+
+    jwt.verify(token, process.env.JWT_TOKEN, async (err, user) => {
+        if (err) {
+            return res.status(403).send('Invalid or expired token.');
+        }
+        req.tokenUser = user;
+        next();
+    })
+
+
+}
 
 
 
@@ -54,6 +72,7 @@ async function run() {
             res.send({ success: true })
         })
 
+        // \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
         app.get("/services", async (req, res) => {
             const data = serviceCollection.find();
@@ -68,9 +87,13 @@ async function run() {
             res.send(result);
         })
 
-        app.get("/bookings/:userID", async (req, res) => {
+        app.get("/bookings/:userID", verifyToken, async (req, res) => {
+            console.log(req.tokenUser);
             const id = req.params.userID;
-            console.log("token", req.cookies);
+            console.log("id", id);
+            if (req.tokenUser.userId !== req.params.userID) {
+                return res.status(403).send({ message: "Forbidden Access" })
+            }
             const query = { userId: (id) };
             const result = await bookingsCollection.find(query).toArray();
             res.send(result);

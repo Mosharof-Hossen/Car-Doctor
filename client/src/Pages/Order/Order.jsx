@@ -9,7 +9,10 @@ const Order = () => {
     const [bookings, setBookings] = useState([]);
     useEffect(() => {
         axios.get(`http://localhost:3000/bookings/${user.uid}`, { withCredentials: true })
-            .then(res => setBookings(res.data))
+            .then(res => {
+                console.log(res);
+                setBookings(res.data)
+            })
     }, [user.uid])
 
     const handleDelete = (id) => {

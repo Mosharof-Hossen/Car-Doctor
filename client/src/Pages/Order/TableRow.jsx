@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 
 const TableRow = ({ item, handleDelete }) => {
     const { _id, productId, img, price, orderDate, status, title } = item;
-    console.log(status);
     return (
         <tr>
             <th>
