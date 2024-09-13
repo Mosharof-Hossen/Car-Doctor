@@ -31,8 +31,6 @@ const verifyToken = (req, res, next) => {
         req.tokenUser = user;
         next();
     })
-
-
 }
 
 

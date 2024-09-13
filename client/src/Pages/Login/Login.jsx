@@ -25,12 +25,7 @@ const Login = () => {
                     showConfirmButton: false,
                     timer: 1500
                 }).then(async () => {
-                    const user = { email: res.user.email, userId: res.user.uid };
-                    await axios.post(`http://localhost:3000/jwt`, user, { withCredentials: true })
-                        .then(resJwt => {
-                            console.log(resJwt);
-                        })
-                    // navigate(location?.state ? location?.state : "/")
+                    navigate(location?.state ? location?.state : "/")
                 })
             })
             .catch(() => {
