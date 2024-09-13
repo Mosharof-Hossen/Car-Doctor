@@ -68,7 +68,9 @@ const Checkout = () => {
                     </div>
                 </div>
             </div>
-
+            <div className="my-10">
+                <h1 className="text-center text-3xl font-bold">Service name: {title}</h1>
+            </div>
             <div className='p-10'>
 
                 <form onSubmit={handleSubmit(onSubmit)}>
