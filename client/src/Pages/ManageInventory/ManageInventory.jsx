@@ -64,6 +64,7 @@ const ManageInventory = () => {
 
 
     }
+    console.log(bookings);
     return (
         <div className="p-5">
             <div
@@ -96,6 +97,7 @@ const ManageInventory = () => {
                             </th>
                             <th>Product Name</th>
                             <th>Price</th>
+                            <th>User Email</th>
                             <th>Date</th>
                             <th>Status</th>
                         </tr>

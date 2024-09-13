@@ -6,7 +6,6 @@ import logo from "../../assets/logo.svg"
 const ServiceDetails = () => {
     const loaderData = useLoaderData()
     const {_id, img, title, facility, description, price } = loaderData
-    console.log(loaderData);
     return (
         <div className="p-5">
 

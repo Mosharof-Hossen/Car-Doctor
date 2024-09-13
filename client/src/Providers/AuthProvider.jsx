@@ -48,8 +48,8 @@ const AuthProvider = ({ children }) => {
             const jwtInfo = { email: currentUser?.email, userId: currentUser?.uid };
             if (currentUser) {
                 axios.post(`http://localhost:3000/jwt`, jwtInfo, { withCredentials: true })
-                    .then(res => {
-                        console.log(res.data);
+                    .then(() => {
+                        // console.log(res.data);
                     })
             }
             else {
@@ -67,7 +67,6 @@ const AuthProvider = ({ children }) => {
         }))
         return () => unSubscribe();
     }, [])
-    console.log(user);
 
     const authInfo = {
         user,

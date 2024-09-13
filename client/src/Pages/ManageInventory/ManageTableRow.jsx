@@ -3,7 +3,7 @@ import { ImCross } from 'react-icons/im';
 import { Link } from 'react-router-dom';
 
 const ManageTableRow = ({ item, handleDelete, handleStateChange }) => {
-    const { _id, productId, img, price, orderDate, status, title } = item;
+    const { _id, productId, img, price, orderDate, status, title, userEmail } = item;
 
 
     return (
@@ -29,6 +29,7 @@ const ManageTableRow = ({ item, handleDelete, handleStateChange }) => {
             <td>
                 ${price}
             </td>
+            <td>{userEmail || "-----"}</td>
             <td>{orderDate.split('T')[0]}</td>
             <td>
                 <select onChange={(e) => handleStateChange(e, _id)} className="select select-secondary w-32 max-w-xs">
