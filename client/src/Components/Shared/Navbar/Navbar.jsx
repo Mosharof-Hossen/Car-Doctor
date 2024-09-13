@@ -18,11 +18,12 @@ const Navbar = () => {
         <NavLink to={"/contact"} className={"  px-2 ml-1 py-2 rounded font-semibold "}><li>Contact</li></NavLink>
 
 
-        <NavLink to={"/manage-inventory"} className={"  px-2 ml-1 py-2 rounded font-semibold "}><li>Manage Inventory</li></NavLink>
-
+        {
+            user?.email === "admin@admin.com" &&
+            <NavLink to={"/manage-inventory"} className={"  px-2 ml-1 py-2 rounded font-semibold "}><li>Manage Inventory</li></NavLink>
+        }
 
     </>
-
 
     return (
         <div className="navbar bg-base-100">
@@ -60,7 +61,7 @@ const Navbar = () => {
                     {links}
                 </ul>
             </div>
-            <div className="navbar-end space-x-4">
+            <div className="navbar-end space-x-4 ">
                 <NavLink to={"/order"}><button className="text-2xl "><FaBagShopping /></button></NavLink>
                 <div className="avatar">
                     <div className="w-10 rounded-full">
@@ -73,7 +74,6 @@ const Navbar = () => {
 
                         :
                         <Link to={'/login'}><button className="text-primary-c border-primary-c border px-3 py-2 rounded">Sign in</button></Link>
-
                 }
             </div>
         </div>

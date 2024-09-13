@@ -18,7 +18,7 @@ const useAxios = () => {
                 logOut()
             }
         })
-    }, [])
+    }, [logOut])
     return instance;
 };
 
