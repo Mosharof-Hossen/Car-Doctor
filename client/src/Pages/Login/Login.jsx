@@ -5,19 +5,16 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import loginImage from "../../assets/images/login/login.svg"
 import { AuthContext } from '../../Providers/AuthProvider';
 import Swal from 'sweetalert2'
-import axios from 'axios';
 
 const Login = () => {
-    const { user, signInByEmailPassword, googleLogin, githubLogin } = useContext(AuthContext);
+    const { signInByEmailPassword, googleLogin, githubLogin } = useContext(AuthContext);
     const [errMsg, setErrMsg] = useState("");
     const location = useLocation()
     const navigate = useNavigate()
-    console.log(location);
     const { register, handleSubmit, formState: { errors } } = useForm();
     const onSubmit = (data) => {
         signInByEmailPassword(data.email, data.password)
-            .then((res) => {
-                console.log(res);
+            .then(() => {
                 Swal.fire({
                     position: "top-end",
                     icon: "success",
@@ -45,8 +42,7 @@ const Login = () => {
                     navigate(location?.state ? location?.state : "/")
                 })
             })
-            .catch(err => {
-                console.log(err);
+            .catch(() => {
             })
     }
     const handleGithubLogin = () => {
@@ -66,7 +62,6 @@ const Login = () => {
                 // console.log(err);
             })
     }
-    console.log(user);
     return (
         <div className="hero  min-h-screen">
             <div className="hero-content flex-col lg:flex-row">

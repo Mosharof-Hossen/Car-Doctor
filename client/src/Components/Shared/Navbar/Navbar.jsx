@@ -13,16 +13,13 @@ const Navbar = () => {
 
         <NavLink to={"/"} className={"  px-2 ml-1 py-2 rounded font-semibold "}><li>Home</li></NavLink>
         <NavLink to={"/services"} className={"  px-2 ml-1 py-2 rounded font-semibold "}><li>Services</li></NavLink>
-        <NavLink to={"/about"} className={"  px-2 ml-1 py-2 rounded font-semibold "}><li>About</li></NavLink>
-        <NavLink to={"/blogs"} className={"  px-2 ml-1 py-2 rounded font-semibold "}><li>Blogs</li></NavLink>
-        <NavLink to={"/contact"} className={"  px-2 ml-1 py-2 rounded font-semibold "}><li>Contact</li></NavLink>
-
-
         {
             user?.email === "admin@admin.com" &&
             <NavLink to={"/manage-inventory"} className={"  px-2 ml-1 py-2 rounded font-semibold "}><li>Manage Inventory</li></NavLink>
         }
-
+        <NavLink to={"/about"} className={"  px-2 ml-1 py-2 rounded font-semibold "}><li>About</li></NavLink>
+        <NavLink to={"/blogs"} className={"  px-2 ml-1 py-2 rounded font-semibold "}><li>Blogs</li></NavLink>
+        <NavLink to={"/contact"} className={"  px-2 ml-1 py-2 rounded font-semibold "}><li>Contact</li></NavLink>
     </>
 
     return (

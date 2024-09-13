@@ -45,7 +45,6 @@ const Checkout = () => {
                     })
                 }
             })
-        console.log(orderInfo);
     }
     return (
         <div className="p-5">

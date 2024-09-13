@@ -11,7 +11,6 @@ const Order = () => {
     useEffect(() => {
         axiosSecure.get(`/bookings/${user.uid}`)
             .then(res => {
-                console.log(res);
                 setBookings(res.data)
             })
     }, [user.uid, axiosSecure])

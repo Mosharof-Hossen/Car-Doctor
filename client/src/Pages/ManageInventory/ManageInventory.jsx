@@ -64,7 +64,6 @@ const ManageInventory = () => {
 
 
     }
-    console.log(bookings);
     return (
         <div className="p-5">
             <div

@@ -13,7 +13,6 @@ const useAxios = () => {
         instance.interceptors.response.use(res => {
             return res
         }, (err) => {
-            console.log("Error tracked in the interceptor ", err.response);
             if (err.response.status === 403) {
                 logOut()
             }

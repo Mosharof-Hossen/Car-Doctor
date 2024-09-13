@@ -1,32 +1,69 @@
 import { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { FaGithub, FaGoogle } from 'react-icons/fa6';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import loginImage from "../../assets/images/login/login.svg"
 import { AuthContext } from '../../Providers/AuthProvider';
+import Swal from 'sweetalert2';
 
 
 const SignUp = () => {
-    const { createUserByEmailPassword , user } = useContext(AuthContext);
+    const { createUserByEmailPassword, googleLogin, githubLogin, } = useContext(AuthContext);
     const [errMsg, setErrMsg] = useState("");
+    const navigate = useNavigate()
     const { register, handleSubmit, formState: { errors } } = useForm();
     const onSubmit = data => {
-        console.log(data);
-        createUserByEmailPassword(data.email,data.password)
-        .then(res=>{
-            console.log(res.user);
-        })
-        .catch(err=>{
-            console.log(err);
-        })
+        createUserByEmailPassword(data.email, data.password)
+            .then(() => {
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "Account Created Successfully",
+                    showConfirmButton: false,
+                    timer: 1500
+                }).then(async () => {
+                    navigate("/")
+                })
+            })
+            .catch(() => {
+                setErrMsg("Email Already Used")
+            })
     };
 
     const handleGoogleLogin = () => {
+        googleLogin()
+            .then(() => {
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "Login Successfully",
+                    showConfirmButton: false,
+                    timer: 1500
+                }).then(() => {
+                    navigate("/")
+                })
+            })
+            .catch(() => {
+            })
     }
     const handleGithubLogin = () => {
+        githubLogin()
+            .then(() => {
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "Login Successfully",
+                    showConfirmButton: false,
+                    timer: 1500
+                }).then(() => {
+                    navigate("/")
+                })
+            })
+            .catch(() => {
+                // console.log(err);
+            })
     }
 
-    console.log(user);
 
     return (
         <div className="hero  min-h-screen">

@@ -4,8 +4,6 @@ import { Link } from 'react-router-dom';
 
 const ManageTableRow = ({ item, handleDelete, handleStateChange }) => {
     const { _id, productId, img, price, orderDate, status, title, userEmail } = item;
-
-
     return (
         <tr>
             <th>
