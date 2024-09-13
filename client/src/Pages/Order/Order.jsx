@@ -3,17 +3,18 @@ import orderBanner from "../../assets/images/checkout/checkout.png"
 import { AuthContext } from "../../Providers/AuthProvider";
 import TableRow from "./TableRow";
 import Swal from "sweetalert2";
-import axios from "axios";
+import useAxios from "../../Hooks/useAxios";
 const Order = () => {
     const { user } = useContext(AuthContext)
     const [bookings, setBookings] = useState([]);
+    const axiosSecure = useAxios();
     useEffect(() => {
-        axios.get(`http://localhost:3000/bookings/${user.uid}`, { withCredentials: true })
+        axiosSecure.get(`/bookings/${user.uid}`)
             .then(res => {
                 console.log(res);
                 setBookings(res.data)
             })
-    }, [user.uid])
+    }, [user.uid, axiosSecure])
 
     const handleDelete = (id) => {
         Swal.fire({
