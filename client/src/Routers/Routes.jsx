@@ -69,7 +69,6 @@ const router = createBrowserRouter([
             {
                 path: "/manage-inventory",
                 element: <AdminRoute><ManageInventory></ManageInventory></AdminRoute>,
-                loader: async () => await fetch(`http://localhost:3000/bookings/`),
             }
 
         ]

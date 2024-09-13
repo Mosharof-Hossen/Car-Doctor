@@ -1,12 +1,22 @@
-import { useLoaderData } from "react-router-dom";
 import inventoryBanner from "../../assets/images/checkout/checkout.png"
 import ManageTableRow from "./ManageTableRow";
 import Swal from "sweetalert2";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import useAxios from "../../Hooks/useAxios";
+import { AuthContext } from "../../Providers/AuthProvider";
 
 const ManageInventory = () => {
-    const loaderData = useLoaderData()
-    const [bookings, setBookings] = useState(loaderData);
+    const { user } = useContext(AuthContext);
+    const [bookings, setBookings] = useState([]);
+    const axiosSecure = useAxios();
+    // loader: async () => await fetch(`http://localhost:3000/bookings/`),
+    useEffect(() => {
+        axiosSecure.get(`/all-bookings/${user.uid}`)
+            .then(res => {
+                setBookings(res.data)
+            })
+    }, [user.uid, axiosSecure])
+
 
     const handleStatusChange = (event, id) => {
         const selectedStatus = event.target.value;

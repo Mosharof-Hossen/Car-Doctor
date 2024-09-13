@@ -91,9 +91,8 @@ async function run() {
         })
 
         app.get("/bookings/:userID", verifyToken, async (req, res) => {
-            console.log(req.tokenUser);
             const id = req.params.userID;
-            console.log("id", id);
+
             if (req.tokenUser.userId !== req.params.userID) {
                 return res.status(403).send({ message: "Forbidden Access" })
             }
@@ -101,8 +100,13 @@ async function run() {
             const result = await bookingsCollection.find(query).toArray();
             res.send(result);
         })
-        app.get("/bookings", async (req, res) => {
-            const id = req.params.userID;
+
+        app.get("/all-bookings/:uid", verifyToken, async (req, res) => {
+            const id = req.params.uid;
+            console.log(id);
+            if (req.tokenUser.userId !== id) {
+                return res.status(403).send({ message: "Forbidden Access" })
+            }
             const result = await bookingsCollection.find().toArray();
             res.send(result);
         })
