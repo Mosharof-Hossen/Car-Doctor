@@ -29,7 +29,7 @@ const ManageTableRow = ({ item, handleDelete, handleStateChange }) => {
             <td>
                 ${price}
             </td>
-            <td>{userEmail || "-----"}</td>
+            <td>{userEmail || "____@____.com"}</td>
             <td>{orderDate.split('T')[0]}</td>
             <td>
                 <select onChange={(e) => handleStateChange(e, _id)} className="select select-secondary w-32 max-w-xs">

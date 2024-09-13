@@ -15,6 +15,7 @@ import Checkout from "../Pages/Checkout/Checkout";
 import PrivateRoute from "./PrivateRoute";
 import Order from "../Pages/Order/Order";
 import ManageInventory from "../Pages/ManageInventory/ManageInventory";
+import AdminRoute from "./AdminRoute";
 
 const router = createBrowserRouter([
     {
@@ -67,7 +68,7 @@ const router = createBrowserRouter([
             ,
             {
                 path: "/manage-inventory",
-                element: <ManageInventory></ManageInventory>,
+                element: <AdminRoute><ManageInventory></ManageInventory></AdminRoute>,
                 loader: async () => await fetch(`http://localhost:3000/bookings/`),
             }
 
