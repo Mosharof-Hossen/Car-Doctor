@@ -9,7 +9,7 @@ const ManageInventory = () => {
     const { user } = useContext(AuthContext);
     const [bookings, setBookings] = useState([]);
     const axiosSecure = useAxios();
-    // loader: async () => await fetch(`http://localhost:3000/bookings/`),
+    // loader: async () => await fetch(`https://car-doctor-server-rosy-xi.vercel.app/bookings/`),
     useEffect(() => {
         axiosSecure.get(`/all-bookings/${user.uid}`)
             .then(res => {
@@ -22,7 +22,7 @@ const ManageInventory = () => {
         const selectedStatus = event.target.value;
 
         const data = { id, selectedStatus }
-        fetch(`http://localhost:3000/bookings/${id}`, {
+        fetch(`https://car-doctor-server-rosy-xi.vercel.app/bookings/${id}`, {
             method: "PATCH",
             headers: {
                 'content-type': 'application/json'
@@ -54,7 +54,7 @@ const ManageInventory = () => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:3000/bookings/${id}`, {
+                fetch(`https://car-doctor-server-rosy-xi.vercel.app/bookings/${id}`, {
                     method: "DELETE"
                 })
                     .then(res => res.json())

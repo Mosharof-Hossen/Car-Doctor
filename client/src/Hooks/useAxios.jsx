@@ -3,7 +3,7 @@ import { useContext, useEffect } from 'react';
 import { AuthContext } from '../Providers/AuthProvider';
 
 const instance = axios.create({
-    baseURL: 'http://localhost:3000',
+    baseURL: 'https://car-doctor-server-rosy-xi.vercel.app',
     withCredentials: true
 })
 

@@ -10,16 +10,24 @@ app = express()
 const port = process.env.PORT || 3000;
 
 // Middleware
-app.use(cors({
-    origin: ['http://localhost:5173'],
-    credentials: true
-}));
+
+
 app.use(cookieParser())
 
 app.use(express.json());
+app.use(cors({
+    origin: [
+        'http://localhost:5173',
+        'https://car-doctor-app-1.web.app',
+        // 'https://car-doctor-app-1.firebaseapp.com',
+        // 'https://66e4b2100d81ee8c549531c6--guileless-brioche-742af8.netlify.app'
+    ],
+    credentials: true
+}));
 
 const verifyToken = (req, res, next) => {
-    const token = req.cookies.token;
+    const token = req?.cookies?.token;
+    console.log(token);
     if (!token) {
         return res.status(403).json({ message: 'Access denied. Token is missing.' })
     }
@@ -32,7 +40,13 @@ const verifyToken = (req, res, next) => {
         next();
     })
 }
-
+const cookieOptions = {
+    httpOnly: true,
+    sameSite: "None",
+    secure: true,
+};
+//localhost:5000 and localhost:5173 are treated as same site.  so sameSite value must be strict in development server.  in production sameSite will be none
+// in development server secure will false .  in production secure will be true
 
 
 const uri = `mongodb+srv://${process.env.USER}:${process.env.PASS}@cluster0.hm5pj.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
@@ -49,7 +63,7 @@ const client = new MongoClient(uri, {
 async function run() {
     try {
         // Connect the client to the server	(optional starting in v4.7)
-        await client.connect();
+        // await client.connect();
 
         const serviceCollection = client.db("carDoctorDB").collection("services");
         const bookingsCollection = client.db("carDoctorDB").collection("bookings");
@@ -57,22 +71,16 @@ async function run() {
         // Auth JWT
         app.post('/jwt', async (req, res) => {
             const user = req.body;
-            console.log(user);
 
             const token = jwt.sign(user, process.env.JWT_TOKEN, {
                 expiresIn: '1h'
             })
-            console.log(token);
-            res.cookie('token', token, {
-                httpOnly: true,
-                secure: false,
-            })
+            res.cookie('token', token, cookieOptions)
             res.send({ success: true })
         })
 
         app.post('/logout', async (req, res) => {
-            console.log(req.body);
-            res.clearCookie('token', { maxAge: 0 }).send({ success: "token remove" })
+            res.clearCookie('token', { ...cookieOptions, maxAge: 0 }).send({ success: "token remove" })
         })
 
         // \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
@@ -92,8 +100,8 @@ async function run() {
 
         app.get("/bookings/:userID", verifyToken, async (req, res) => {
             const id = req.params.userID;
-
-            if (req.tokenUser.userId !== req.params.userID) {
+            console.log("Bookings:", id);
+            if (req.tokenUser.userId !== id) {
                 return res.status(403).send({ message: "Forbidden Access" })
             }
             const query = { userId: (id) };
@@ -103,7 +111,6 @@ async function run() {
 
         app.get("/all-bookings/:uid", verifyToken, async (req, res) => {
             const id = req.params.uid;
-            console.log(id);
             if (req.tokenUser.userId !== id) {
                 return res.status(403).send({ message: "Forbidden Access" })
             }
@@ -139,7 +146,7 @@ async function run() {
 
 
         // Send a ping to confirm a successful connection
-        await client.db("admin").command({ ping: 1 });
+        // await client.db("admin").command({ ping: 1 });
         console.log("Pinged your deployment. You successfully connected to MongoDB!");
     } finally {
         // Ensures that the client will close when you finish/error

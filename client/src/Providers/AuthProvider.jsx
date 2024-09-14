@@ -47,13 +47,13 @@ const AuthProvider = ({ children }) => {
 
             const jwtInfo = { email: currentUser?.email, userId: currentUser?.uid };
             if (currentUser) {
-                axios.post(`http://localhost:3000/jwt`, jwtInfo, { withCredentials: true })
+                axios.post(`https://car-doctor-server-rosy-xi.vercel.app/jwt`, jwtInfo, { withCredentials: true })
                     .then(() => {
                         // console.log(res.data);
                     })
             }
             else {
-                axios.post(`http://localhost:3000/logout`, jwtInfo, { withCredentials: true })
+                axios.post(`https://car-doctor-server-rosy-xi.vercel.app/logout`, jwtInfo, { withCredentials: true })
                     .then(() => {
                         // console.log(res.data);
                     })
