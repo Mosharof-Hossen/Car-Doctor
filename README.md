@@ -15,10 +15,40 @@ admin: admin@admin.com pass: 123456
 
 ## Tools: 
 1.React Js.
+
 2.Tailwind CSS.
+
 3.MongoDB.
+
 4.Responsive.
+
 5.DaisyUI.
+
 6.Firebase Authentication.
+
 7.React Icons.
+
 8.Font Awesome icon.
+
+## Home Page:
+
+![Home page](https://github.com/user-attachments/assets/85002edf-19dd-42d9-94b8-2f5a4f3ff4fb)
+
+## Services Page:
+
+![Services](https://github.com/user-attachments/assets/4982ec08-f7bc-4c22-96dd-d34d4536b2b8)
+
+## Manage Inventory:
+
+![manage Inventory](https://github.com/user-attachments/assets/a2226308-0fa8-4a86-808a-cb9c1e5abb31)
+
+
+## Login Page:
+
+![Login](https://github.com/user-attachments/assets/f4e6f4fd-2f08-4906-9d86-56c5a192c12c)
+
+## User Order List:
+
+![Cart List](https://github.com/user-attachments/assets/88e9ef64-039d-445a-8621-82dbfad2fc43)
+
+
