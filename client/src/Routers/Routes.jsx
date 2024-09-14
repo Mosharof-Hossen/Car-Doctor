@@ -53,7 +53,7 @@ const router = createBrowserRouter([
             },
             {
                 path: "/serviceDetails/:id",
-                loader: async ({ params }) => await fetch(`                 rver-rosy-xi.vercel.app/service-details/${params.id}`),
+                loader: async ({ params }) => await fetch(`https://car-doctor-server-rosy-xi.vercel.app/service-details/${params.id}`),
                 element: <ServiceDetails></ServiceDetails>
             },
             {
