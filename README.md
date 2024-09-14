@@ -2,6 +2,7 @@
 
 
 ## Features: 
+admin: admin@admin.com pass: 123456
 1. This is a Car Services website.
 2. Service Checkout: Users can browse services and view detailed information. To proceed with a service checkout, users must log in. If not logged in, they are redirected to the login page, and after successful login, they’re taken back to the checkout.
 3. Order Management: Users can view all their ordered services in the cart. They have the ability to delete any unwanted orders. The cart is a protected feature, accessible only to logged-in users.
@@ -11,8 +12,6 @@
 7. Data Storage: MongoDB is used to store user information, service details, and order data efficiently and securely.
 8. Hosting: The entire application is hosted on Firebase, ensuring fast, scalable, and reliable performance. Server is hosted on Vercel.
 9. Both the server site and the client site were challenging. I enjoyed it.
-
-
 
 ## Tools: 
 1.React Js.
